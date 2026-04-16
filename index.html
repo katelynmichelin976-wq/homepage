@@ -1,239 +1,848 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>有你好果汁吃 - 官方落地页</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap');
-        
-        :root {
-            --primary-orange: #FF8C42;
-            --primary-green: #63D471;
-            --bg-dark: #1A1A1A;
-        }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>有你好果汁吃 - 官方落地页</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg:      #1A1208;
+    --bg2:     #231A0D;
+    --card:    #2C2010;
+    --border:  #4A3520;
+    --orange:  #F07B28;
+    --orange2: #FFB347;
+    --green:   #4ADE80;
+    --red:     #E53935;
+    --cream:   #FFF3E0;
+    --text:    #F5E6C8;
+    --muted:   #A08050;
+    --pixel: "Courier New", monospace;
+  }
 
-        body {
-            background-color: var(--bg-dark);
-            color: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow-x: hidden;
-        }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        .pixel-font {
-            font-family: 'ZCOOL KuaiLe', cursive, sans-serif;
-        }
+  html { scroll-behavior: smooth; }
 
-        .hero-gradient {
-            background: linear-gradient(180deg, rgba(255,140,66,0.2) 0%, rgba(26,26,26,1) 100%);
-        }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
 
-        .card-glass {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease;
-        }
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px;
+    height: 64px;
+    background: rgba(26,18,8,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 18px; font-weight: 700;
+    color: var(--orange2);
+  }
+  .nav-logo .icon { font-size: 24px; }
+  .nav-links { display: flex; gap: 36px; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none; font-size: 14px;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--orange2); }
+  .nav-cta {
+    padding: 8px 22px;
+    border: 2px solid var(--orange);
+    border-radius: 8px;
+    color: var(--orange2);
+    text-decoration: none; font-size: 14px; font-weight: 700;
+    transition: background .2s, color .2s;
+  }
+  .nav-cta:hover { background: var(--orange); color: #fff; }
 
-        .card-glass:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary-orange);
-        }
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    padding-top: 64px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
 
-        .btn-primary {
-            background-color: var(--primary-orange);
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 0 #D35400;
-        }
+  /* 像素格背景 */
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(240,123,40,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(240,123,40,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
 
-        .btn-primary:active {
-            transform: translateY(4px);
-            box-shadow: 0 0 0 #D35400;
-        }
+  /* 浮动水果装饰 */
+  .fruit {
+    position: absolute;
+    font-size: 48px;
+    opacity: 0.22;
+    animation: floatFruit 6s ease-in-out infinite;
+    user-select: none;
+    pointer-events: none;
+  }
+  .fruit:nth-child(1)  { top: 14%; left:  6%; font-size: 56px; animation-delay: 0s; }
+  .fruit:nth-child(2)  { top: 22%; right: 8%; font-size: 40px; animation-delay: 1.2s; }
+  .fruit:nth-child(3)  { top: 60%; left:  3%; font-size: 36px; animation-delay: 2s; }
+  .fruit:nth-child(4)  { top: 70%; right: 5%; font-size: 44px; animation-delay: 0.7s; }
+  .fruit:nth-child(5)  { top: 40%; left: 12%; font-size: 28px; animation-delay: 3s; }
+  .fruit:nth-child(6)  { top: 50%; right:12%; font-size: 30px; animation-delay: 1.8s; }
+  @keyframes floatFruit {
+    0%,100% { transform: translateY(0) rotate(-5deg); }
+    50%      { transform: translateY(-18px) rotate(5deg); }
+  }
 
-        .floating {
-            animation: floating 3s ease-in-out infinite;
-        }
+  /* 果汁飞溅装饰 */
+  .splash {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.12;
+  }
+  .splash-1 { width: 320px; height: 320px; background: var(--orange); top: -60px; left: -80px; filter: blur(60px); }
+  .splash-2 { width: 260px; height: 260px; background: var(--red);    top: 30%;  right:-60px; filter: blur(50px); }
+  .splash-3 { width: 200px; height: 200px; background: var(--green);  bottom:10%; left: 20%;  filter: blur(70px); }
 
-        @keyframes floating {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
+  .hero-inner { position: relative; z-index: 2; padding: 0 24px; max-width: 820px; }
 
-        .fruit-icon {
-            font-size: 2rem;
-            filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
-        }
-    </style>
+  /* 像素风徽章 */
+  .hero-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    margin-bottom: 28px;
+    background: var(--card);
+    border: 2px solid var(--orange);
+    border-radius: 4px;
+    font-family: var(--pixel);
+    font-size: 13px;
+    color: var(--orange2);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: blink 1.8s step-end infinite;
+  }
+  @keyframes blink {
+    0%,100% { border-color: var(--orange); }
+    50%      { border-color: transparent; }
+  }
+
+  /* 主标题 */
+  .hero-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: clamp(44px, 8vw, 96px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  .hero-title .line1 { color: var(--text); display: block; }
+  .hero-title .line2 {
+    display: block;
+    background: linear-gradient(90deg, var(--orange), var(--orange2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-title .accent {
+    color: var(--green);
+    -webkit-text-fill-color: var(--green);
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    color: var(--muted);
+    max-width: 560px;
+    margin: 20px auto 40px;
+    line-height: 1.9;
+  }
+
+  /* CTA 按钮 */
+  .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 16px 40px;
+    background: var(--orange);
+    color: #fff;
+    font-size: 17px; font-weight: 700;
+    border: none; border-radius: 10px;
+    cursor: pointer; text-decoration: none;
+    transition: transform .15s, box-shadow .15s;
+    box-shadow: 0 4px 0 #9B4D14;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 0 #9B4D14; }
+  .btn-primary:active { transform: translateY(2px); box-shadow: 0 2px 0 #9B4D14; }
+
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 15px 36px;
+    background: transparent;
+    color: var(--text);
+    font-size: 17px; font-weight: 500;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer; text-decoration: none;
+    transition: border-color .2s, color .2s;
+  }
+  .btn-secondary:hover { border-color: var(--orange); color: var(--orange2); }
+
+  /* 游戏画面预览区 */
+  .preview {
+    position: relative; z-index: 2;
+    margin-top: 64px;
+    width: min(900px, 92vw);
+    border-radius: 16px;
+    border: 2px solid var(--border);
+    overflow: hidden;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+  }
+  .preview-bar {
+    display: flex; align-items: center; gap: 8px;
+    padding: 12px 18px;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+  }
+  .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .dot-r { background: #E53935; }
+  .dot-y { background: #FFC107; }
+  .dot-g { background: #4CAF50; }
+  .preview-inner {
+    background: #1B3518;
+    min-height: 320px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  /* 棋盘格背景 */
+  .preview-inner::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* HUD模拟 */
+  .hud {
+    position: absolute; top: 14px; left: 0; right: 0;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 20px;
+    font-family: var(--pixel);
+    font-size: 12px;
+    z-index: 2;
+  }
+  .hud-stat { color: var(--orange2); letter-spacing: 1px; }
+  .hud-stat span { color: var(--red); }
+  .hud-stat.kills span { color: #fff; }
+  .hud-stat.best span  { color: var(--orange2); }
+  .hud-stat.timer span { color: var(--green); }
+
+  .score-popup {
+    position: absolute; top: 50px; left: 50%; transform: translateX(-50%);
+    font-family: var(--pixel);
+    font-size: 52px; font-weight: 900;
+    color: #fff;
+    text-shadow: 4px 4px 0 var(--orange);
+    letter-spacing: 4px;
+    animation: scoreAnim 2s ease-in-out infinite;
+    z-index: 2;
+  }
+  @keyframes scoreAnim {
+    0%,100% { transform: translateX(-50%) scale(1); opacity:1; }
+    50%      { transform: translateX(-50%) scale(1.04); opacity:.85; }
+  }
+
+  /* 像素角色 */
+  .pixel-char {
+    position: absolute;
+    width: 56px; height: 80px;
+    z-index: 3;
+    animation: charBob 0.5s step-end infinite;
+  }
+  @keyframes charBob {
+    0%,100% { transform: translateY(0); }
+    50%      { transform: translateY(-4px); }
+  }
+  /* 斜向剑光 */
+  .sword-trail {
+    position: absolute;
+    width: 180px; height: 6px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent);
+    border-radius: 3px;
+    transform: rotate(-30deg);
+    animation: swordSwipe 1s ease-in-out infinite;
+    z-index: 4;
+  }
+  @keyframes swordSwipe {
+    0%   { opacity: 0; transform: rotate(-30deg) scaleX(0.3) translateX(-40px); }
+    40%  { opacity: 1; transform: rotate(-30deg) scaleX(1) translateX(0); }
+    100% { opacity: 0; transform: rotate(-30deg) scaleX(1.2) translateX(40px); }
+  }
+  /* 水果像素图标 */
+  .px-fruit {
+    position: absolute;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    animation: fruitSpin 0.3s step-end infinite alternate;
+  }
+  @keyframes fruitSpin {
+    0%   { transform: rotate(-8deg); }
+    100% { transform: rotate(8deg); }
+  }
+  .fruit-apple { background: #E53935; }
+  .fruit-orange { background: #FF9800; }
+  .fruit-banana {
+    width: 40px; height: 20px;
+    border-radius: 30px 30px 0 0;
+    background: #FFD600;
+  }
+  /* 血迹效果 */
+  .splatter {
+    position: absolute;
+    background: var(--red);
+    border-radius: 50%;
+    opacity: 0.7;
+  }
+  /* 右侧果汁杯 */
+  .juice-cup {
+    position: absolute; right: 30px; bottom: 20px;
+    width: 52px;
+    font-size: 10px;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 4px; z-index: 3;
+    font-family: var(--pixel);
+    color: var(--orange2);
+    letter-spacing: 0;
+    line-height: 1.2;
+    text-align: center;
+  }
+  .cup-body {
+    width: 36px; height: 60px;
+    background: rgba(255,255,255,0.15);
+    border: 2px solid rgba(255,255,255,0.4);
+    border-radius: 4px;
+    position: relative; overflow: hidden;
+  }
+  .cup-fill {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 72%;
+    background: var(--red);
+    animation: fillUp 3s ease-in-out infinite;
+  }
+  @keyframes fillUp {
+    0%,100% { height:72%; }
+    50%      { height:80%; }
+  }
+  /* 分数弹出 */
+  .plus-score {
+    position: absolute;
+    font-family: var(--pixel);
+    font-size: 14px;
+    color: #FFD600;
+    animation: floatUp 2s ease-out infinite;
+    z-index: 5;
+  }
+  @keyframes floatUp {
+    0%   { opacity:1; transform:translateY(0); }
+    100% { opacity:0; transform:translateY(-60px); }
+  }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 100px 24px; }
+  .section-inner { max-width: 1080px; margin: 0 auto; }
+  .section-tag {
+    display: inline-block;
+    font-family: var(--pixel);
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .section-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .section-desc {
+    color: var(--muted);
+    font-size: 16px;
+    max-width: 520px;
+    line-height: 1.9;
+  }
+
+  /* ── FEATURES ── */
+  #features { background: var(--bg2); }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 56px;
+  }
+  .feat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 36px 28px;
+    transition: border-color .2s, transform .2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .feat-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--orange), var(--orange2));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .3s;
+  }
+  .feat-card:hover { border-color: var(--orange); transform: translateY(-4px); }
+  .feat-card:hover::before { transform: scaleX(1); }
+  .feat-icon {
+    font-size: 40px;
+    margin-bottom: 20px;
+    display: block;
+  }
+  .feat-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 20px; font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+  .feat-desc { color: var(--muted); font-size: 15px; line-height: 1.8; }
+
+  /* ── WORKSHOP ── */
+  #workshop {
+    background: var(--bg);
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .workshop-inner {
+    max-width: 1080px; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 64px; align-items: center;
+  }
+  .workshop-text .section-desc { max-width: 100%; }
+  .workshop-list {
+    list-style: none;
+    margin-top: 28px;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .workshop-list li {
+    display: flex; align-items: center; gap: 12px;
+    color: var(--text); font-size: 15px;
+  }
+  .workshop-list li::before {
+    content: '';
+    width: 8px; height: 8px;
+    border-radius: 2px;
+    background: var(--orange);
+    flex-shrink: 0;
+  }
+  .map-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .map-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    font-family: var(--pixel);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    aspect-ratio: 1;
+    display: flex; flex-direction: column; justify-content: space-between;
+    position: relative; overflow: hidden;
+    transition: border-color .2s;
+    cursor: pointer;
+  }
+  .map-card:hover { border-color: var(--orange); }
+  .map-card-label { color: var(--orange2); font-size: 10px; }
+  .map-preview {
+    flex: 1;
+    display: grid; grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 2px;
+    margin: 12px 0;
+  }
+  .mp { border-radius: 1px; }
+  .mp-g  { background: #2E5E2E; }
+  .mp-w  { background: #6B4226; }
+  .mp-r  { background: var(--red); }
+  .mp-o  { background: var(--orange); }
+  .mp-0  { background: transparent; }
+  .map-author { color: var(--muted); font-size: 9px; }
+
+  @media (max-width: 700px) {
+    .workshop-inner { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  /* ── DOWNLOAD ── */
+  #download {
+    background: var(--bg2);
+    text-align: center;
+  }
+  .download-inner { max-width: 700px; margin: 0 auto; }
+  .download-inner .section-title { margin-bottom: 12px; }
+  .download-inner .section-desc { margin: 0 auto 48px; }
+  .download-btns {
+    display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;
+    margin-bottom: 24px;
+  }
+  .dl-btn {
+    display: inline-flex; align-items: center; gap: 12px;
+    padding: 16px 28px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 15px; font-weight: 500;
+    transition: border-color .2s, background .2s;
+    min-width: 180px;
+  }
+  .dl-btn:hover { border-color: var(--orange); background: rgba(240,123,40,0.08); }
+  .dl-btn .dl-icon { font-size: 26px; }
+  .dl-btn .dl-info { text-align: left; }
+  .dl-btn .dl-sub { font-size: 11px; color: var(--muted); display: block; margin-bottom: 2px; }
+  .dl-btn .dl-name { font-size: 15px; font-weight: 700; color: var(--orange2); }
+  .version-info {
+    font-family: var(--pixel);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    margin-top: 20px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding: 40px 24px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--orange2); }
+  .footer-links { display: flex; gap: 24px; justify-content: center; margin-bottom: 16px; }
+
+  /* ── 滚动动画 ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .5s ease, transform .5s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
 </head>
 <body>
 
-    <!-- 导航栏 -->
-    <nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center bg-black/50 backdrop-blur-md">
-        <div class="flex items-center gap-2">
-            <span class="text-2xl">🧃</span>
-            <span class="pixel-font text-xl font-bold tracking-wider">有你好果汁吃</span>
-        </div>
-        <div class="hidden md:flex gap-8 text-sm font-medium">
-            <a href="#features" class="hover:text-orange-400 transition">游戏特色</a>
-            <a href="#workshop" class="hover:text-orange-400 transition">创意工坊</a>
-            <a href="#download" class="hover:text-orange-400 transition">立即下载</a>
-        </div>
-        <button class="bg-white text-black px-4 py-1.5 rounded-full text-sm font-bold hover:bg-orange-400 hover:text-white transition">
-            TapTap 关注
-        </button>
-    </nav>
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <span class="icon">🧃</span>
+    <span>有你好果汁吃</span>
+  </div>
+  <div class="nav-links">
+    <a href="#features">游戏特色</a>
+    <a href="#workshop">创意工坊</a>
+    <a href="#download">立即下载</a>
+  </div>
+  <a href="https://www.taptap.cn" target="_blank" class="nav-cta">TapTap 关注</a>
+</nav>
 
-    <!-- 主视觉区 -->
-    <section class="relative min-h-screen flex flex-col justify-center items-center text-center px-4 hero-gradient overflow-hidden">
-        <div class="absolute top-20 left-10 floating opacity-20 text-6xl">🍎</div>
-        <div class="absolute bottom-20 right-10 floating opacity-20 text-6xl" style="animation-delay: 1s;">🍉</div>
-        <div class="absolute top-40 right-20 floating opacity-20 text-5xl" style="animation-delay: 1.5s;">🍇</div>
+<!-- HERO -->
+<section class="hero">
+  <div class="splash splash-1"></div>
+  <div class="splash splash-2"></div>
+  <div class="splash splash-3"></div>
+  <span class="fruit">🍎</span>
+  <span class="fruit">🍉</span>
+  <span class="fruit">🍇</span>
+  <span class="fruit">🍊</span>
+  <span class="fruit">🍌</span>
+  <span class="fruit">🥥</span>
 
-        <div class="z-10 max-w-4xl">
-            <h1 class="pixel-font text-5xl md:text-8xl mb-6 leading-tight">
-                操控 <span class="text-orange-400">嗒啦啦</span><br>
-                把烦恼都化成 <span class="text-green-400">果汁</span>！
-            </h1>
-            <p class="text-gray-400 text-lg md:text-xl mb-10 max-w-2xl mx-auto">
-                一款爽快感爆棚的 2D 像素肉鸽游戏。拿起武器，冲进水果堆，开启一场充满果香的割草战斗！
-            </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="#download" class="btn-primary px-10 py-4 rounded-xl font-bold text-lg">立即试玩</a>
-                <button class="bg-gray-800 border border-gray-700 px-10 py-4 rounded-xl font-bold text-lg hover:bg-gray-700 transition">
-                    观看预告片
-                </button>
-            </div>
+  <div class="hero-inner">
+    <div class="hero-badge">▶ 2D Pixel Roguelite · 现已上线</div>
+    <h1 class="hero-title">
+      <span class="line1">操控 <em style="font-style:normal;color:var(--orange2)">嗒啦啦</em></span>
+      <span class="line2">把烦恼都化成 <span class="accent">果汁</span>！</span>
+    </h1>
+    <p class="hero-sub">
+      一款爽快感爆棚的 2D 像素肉鸽游戏。拿起武器，冲进水果堆，<br/>开启一场充满果香的割草战斗！
+    </p>
+    <div class="hero-btns">
+      <a href="#download" class="btn-primary">🕹️ 立即试玩</a>
+      <a href="#" class="btn-secondary">▶ 观看预告片</a>
+    </div>
+  </div>
+
+  <!-- 游戏画面模拟 -->
+  <div class="preview reveal" style="transition-delay:.3s">
+    <div class="preview-bar">
+      <div class="dot dot-r"></div>
+      <div class="dot dot-y"></div>
+      <div class="dot dot-g"></div>
+      <span style="flex:1;text-align:center;font-family:var(--pixel);font-size:11px;color:var(--muted);letter-spacing:2px">GAME PREVIEW</span>
+    </div>
+    <div class="preview-inner">
+      <!-- HUD -->
+      <div class="hud">
+        <div class="hud-stat kills">KILLS <span>28</span></div>
+        <div class="hud-stat best">BEST <span>×16</span></div>
+        <div class="hud-stat timer">TIME <span>0:44</span></div>
+      </div>
+      <!-- 分数 -->
+      <div class="score-popup">2900</div>
+      <!-- 主角 -->
+      <div class="pixel-char" style="left:43%;top:38%">
+        <svg width="56" height="80" viewBox="0 0 56 80" style="image-rendering:pixelated">
+          <!-- 头发 -->
+          <rect x="8" y="0" width="40" height="14" rx="2" fill="#FFD600"/>
+          <!-- 脸 -->
+          <rect x="12" y="10" width="32" height="28" rx="4" fill="#FFCC80"/>
+          <!-- 眼睛 -->
+          <rect x="17" y="18" width="8" height="8" rx="1" fill="#212121"/>
+          <rect x="31" y="18" width="8" height="8" rx="1" fill="#212121"/>
+          <rect x="19" y="19" width="3" height="3" fill="#fff"/>
+          <rect x="33" y="19" width="3" height="3" fill="#fff"/>
+          <!-- 身体 -->
+          <rect x="10" y="38" width="36" height="28" rx="4" fill="#1565C0"/>
+          <rect x="22" y="38" width="12" height="8" rx="2" fill="#fff"/>
+          <!-- 腿 -->
+          <rect x="12" y="64" width="14" height="16" rx="3" fill="#1565C0"/>
+          <rect x="30" y="64" width="14" height="16" rx="3" fill="#1565C0"/>
+          <!-- 靴子 -->
+          <rect x="8" y="74" width="18" height="6" rx="2" fill="#4E342E"/>
+          <rect x="30" y="74" width="18" height="6" rx="2" fill="#4E342E"/>
+        </svg>
+      </div>
+      <!-- 剑光 -->
+      <div class="sword-trail" style="left:44%;top:55%"></div>
+      <!-- 水果 -->
+      <div class="px-fruit fruit-apple" style="left:20%;top:40%"></div>
+      <div class="px-fruit fruit-apple" style="left:30%;top:55%"></div>
+      <div class="px-fruit fruit-orange" style="left:62%;top:42%"></div>
+      <div class="px-fruit fruit-orange" style="left:68%;top:58%"></div>
+      <div class="px-fruit fruit-banana" style="left:55%;top:30%"></div>
+      <!-- 血迹 -->
+      <div class="splatter" style="width:80px;height:60px;left:18%;top:52%;transform:rotate(-20deg);opacity:.6"></div>
+      <div class="splatter" style="width:50px;height:40px;left:60%;top:45%;transform:rotate(15deg);opacity:.5"></div>
+      <!-- 分数弹出 -->
+      <div class="plus-score" style="left:22%;top:42%;animation-delay:0s">+100</div>
+      <div class="plus-score" style="left:62%;top:38%;animation-delay:0.8s">+200</div>
+      <!-- 右侧果汁杯 -->
+      <div class="juice-cup">
+        <div style="font-size:9px;line-height:1.3">FULL<br>OF JUICE</div>
+        <div class="cup-body"><div class="cup-fill"></div></div>
+        <div style="font-size:9px">85/100</div>
+      </div>
+      <!-- 操作提示 -->
+      <div style="position:absolute;bottom:10px;left:50%;transform:translateX(-50%);font-family:var(--pixel);font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:1px;white-space:nowrap">
+        WASD MOVE | SPACE ROLL | LMB THROW | RMB SLASH | WALK TO PICK UP
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-tag">// game features</div>
+      <h2 class="section-title">为什么好玩？</h2>
+      <p class="section-desc">每一把都是全新的挑战，每一刀都是充实的解压。</p>
+    </div>
+    <div class="features-grid">
+      <div class="feat-card reveal" style="transition-delay:.1s">
+        <span class="feat-icon">⚔️</span>
+        <div class="feat-title">极爽割草体验</div>
+        <p class="feat-desc">简单直接的动作操作，面对潮水般涌来的"水果大军"，体验一刀切下一大片的极致解压感。</p>
+      </div>
+      <div class="feat-card reveal" style="transition-delay:.2s">
+        <span class="feat-icon">🎲</span>
+        <div class="feat-title">随机肉鸽组合</div>
+        <p class="feat-desc">多种技能与道具随机掉落。每局都能叠加出不同战斗风格——你是快剑手还是轰炸大师？</p>
+      </div>
+      <div class="feat-card reveal" style="transition-delay:.3s">
+        <span class="feat-icon">🎨</span>
+        <div class="feat-title">像素艺术魅力</div>
+        <p class="feat-desc">精美的 2D 像素风设计，将 TapTap 经典角色嗒啦啦完美重现，色彩明亮，动效丝滑。</p>
+      </div>
+      <div class="feat-card reveal" style="transition-delay:.4s">
+        <span class="feat-icon">🧃</span>
+        <div class="feat-title">果汁满杯机制</div>
+        <p class="feat-desc">击败水果敌人积累果汁值，满杯触发狂暴状态，伤害倍增，画面染成一片鲜艳的像素果汁！</p>
+      </div>
+      <div class="feat-card reveal" style="transition-delay:.5s">
+        <span class="feat-icon">🛡️</span>
+        <div class="feat-title">多样装备体系</div>
+        <p class="feat-desc">盾牌、飞刀、重锤……多种武器与防具自由搭配，打造属于你的专属战斗流派。</p>
+      </div>
+      <div class="feat-card reveal" style="transition-delay:.6s">
+        <span class="feat-icon">🏆</span>
+        <div class="feat-title">排行榜竞技</div>
+        <p class="feat-desc">全球玩家实时排名，比拼最高连击数与最快通关时间，看谁才是真正的"榨汁王者"。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORKSHOP -->
+<section id="workshop">
+  <div class="workshop-inner section-inner">
+    <div class="workshop-text reveal">
+      <div class="section-tag">// creative workshop</div>
+      <h2 class="section-title">不只是战斗，<br/>更是创造</h2>
+      <p class="section-desc">内置功能强大的创意工坊。你可以设计属于自己的关卡、布置敌人类型，甚至改变果汁的流向。分享给全服玩家，看看谁的关卡最折磨（或最爽快）！</p>
+      <ul class="workshop-list">
+        <li>自定义地图编辑器，拖拽即可设计</li>
+        <li>创作者收益入驻，好关卡有回报</li>
+        <li>一键试玩他人关卡，发现无限可能</li>
+        <li>社区点赞排行，优质内容持续曝光</li>
+      </ul>
+    </div>
+    <div class="map-grid reveal" style="transition-delay:.2s">
+      <div class="map-card">
+        <div class="map-card-label">玩家关卡 A</div>
+        <div class="map-preview">
+          <div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-w"></div><div class="mp mp-w"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-r"></div><div class="mp mp-g"></div>
+          <div class="mp mp-g"></div><div class="mp mp-0"></div><div class="mp mp-0"></div><div class="mp mp-w"></div><div class="mp mp-0"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-g"></div>
+          <div class="mp mp-r"></div><div class="mp mp-0"></div><div class="mp mp-o"></div><div class="mp mp-0"></div><div class="mp mp-0"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-w"></div>
+          <div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-0"></div><div class="mp mp-g"></div><div class="mp mp-r"></div><div class="mp mp-0"></div><div class="mp mp-g"></div><div class="mp mp-g"></div>
+          <div class="mp mp-w"></div><div class="mp mp-0"></div><div class="mp mp-g"></div><div class="mp mp-0"></div><div class="mp mp-0"></div><div class="mp mp-g"></div><div class="mp mp-o"></div><div class="mp mp-g"></div>
+          <div class="mp mp-g"></div><div class="mp mp-r"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-0"></div><div class="mp mp-g"></div><div class="mp mp-g"></div>
+          <div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-o"></div><div class="mp mp-g"></div><div class="mp mp-0"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-r"></div>
+          <div class="mp mp-g"></div><div class="mp mp-w"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-g"></div>
         </div>
-
-        <!-- 装饰性占位图 -->
-        <div class="mt-16 w-full max-w-5xl px-4">
-            <div class="rounded-2xl border-4 border-gray-800 shadow-2xl overflow-hidden aspect-video bg-gray-900 flex items-center justify-center relative">
-                <div class="text-gray-600 text-center">
-                    <p class="text-6xl mb-4">🎮</p>
-                    <p>游戏画面预览图</p>
-                </div>
-                <!-- 模拟像素 UI 元素 -->
-                <div class="absolute top-4 left-4 flex gap-2">
-                    <div class="w-32 h-4 bg-red-600 rounded"></div>
-                    <div class="w-24 h-4 bg-blue-600 rounded"></div>
-                </div>
-            </div>
+        <div class="map-author">by @榨汁达人</div>
+      </div>
+      <div class="map-card">
+        <div class="map-card-label">玩家关卡 B</div>
+        <div class="map-preview">
+          <div class="mp mp-r"></div><div class="mp mp-r"></div><div class="mp mp-r"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-r"></div><div class="mp mp-r"></div><div class="mp mp-r"></div>
+          <div class="mp mp-r"></div><div class="mp mp-0"></div><div class="mp mp-0"></div><div class="mp mp-0"></div><div class="mp mp-0"></div><div class="mp mp-0"></div><div class="mp mp-0"></div><div class="mp mp-r"></div>
+          <div class="mp mp-g"></div><div class="mp mp-0"></div><div class="mp mp-w"></div><div class="mp mp-w"></div><div class="mp mp-w"></div><div class="mp mp-w"></div><div class="mp mp-0"></div><div class="mp mp-g"></div>
+          <div class="mp mp-g"></div><div class="mp mp-0"></div><div class="mp mp-w"></div><div class="mp mp-o"></div><div class="mp mp-o"></div><div class="mp mp-w"></div><div class="mp mp-0"></div><div class="mp mp-g"></div>
+          <div class="mp mp-g"></div><div class="mp mp-0"></div><div class="mp mp-w"></div><div class="mp mp-o"></div><div class="mp mp-o"></div><div class="mp mp-w"></div><div class="mp mp-0"></div><div class="mp mp-g"></div>
+          <div class="mp mp-g"></div><div class="mp mp-0"></div><div class="mp mp-w"></div><div class="mp mp-w"></div><div class="mp mp-w"></div><div class="mp mp-w"></div><div class="mp mp-0"></div><div class="mp mp-g"></div>
+          <div class="mp mp-r"></div><div class="mp mp-0"></div><div class="mp mp-0"></div><div class="mp mp-0"></div><div class="mp mp-0"></div><div class="mp mp-0"></div><div class="mp mp-0"></div><div class="mp mp-r"></div>
+          <div class="mp mp-r"></div><div class="mp mp-r"></div><div class="mp mp-r"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-r"></div><div class="mp mp-r"></div><div class="mp mp-r"></div>
         </div>
-    </section>
-
-    <!-- 特色介绍 -->
-    <section id="features" class="py-24 px-6 max-w-6xl mx-auto">
-        <h2 class="pixel-font text-3xl md:text-4xl text-center mb-16 underline decoration-orange-500 underline-offset-8">为什么好玩？</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="card-glass p-8 rounded-2xl">
-                <div class="fruit-icon mb-6">⚔️</div>
-                <h3 class="text-xl font-bold mb-4">极爽割草体验</h3>
-                <p class="text-gray-400 leading-relaxed">
-                    简单直接的动作操作，面对潮水般涌来的“水果大军”，体验一刀切下一大片的极致解压感。
-                </p>
-            </div>
-            <div class="card-glass p-8 rounded-2xl">
-                <div class="fruit-icon mb-6">🎲</div>
-                <h3 class="text-xl font-bold mb-4">随机肉鸽组合</h3>
-                <p class="text-gray-400 leading-relaxed">
-                    多种技能与道具随机掉落。每局比赛都能叠加出不同的战斗风格，你是想当快剑手还是轰炸大师？
-                </p>
-            </div>
-            <div class="card-glass p-8 rounded-2xl">
-                <div class="fruit-icon mb-6">🎨</div>
-                <h3 class="text-xl font-bold mb-4">像素艺术魅力</h3>
-                <p class="text-gray-400 leading-relaxed">
-                    精美的 2D 像素风设计，将 TapTap 经典角色嗒啦啦完美重现，色彩明亮，动效丝滑。
-                </p>
-            </div>
+        <div class="map-author">by @水果王国</div>
+      </div>
+      <div class="map-card">
+        <div class="map-card-label">玩家关卡 C</div>
+        <div class="map-preview">
+          <div class="mp mp-w"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-w"></div>
+          <div class="mp mp-g"></div><div class="mp mp-o"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-o"></div><div class="mp mp-g"></div>
+          <div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-r"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-r"></div><div class="mp mp-g"></div><div class="mp mp-g"></div>
+          <div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-0"></div><div class="mp mp-0"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-g"></div>
+          <div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-0"></div><div class="mp mp-0"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-g"></div>
+          <div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-r"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-r"></div><div class="mp mp-g"></div><div class="mp mp-g"></div>
+          <div class="mp mp-g"></div><div class="mp mp-o"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-o"></div><div class="mp mp-g"></div>
+          <div class="mp mp-w"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-w"></div>
         </div>
-    </section>
-
-    <!-- 创意工坊 -->
-    <section id="workshop" class="py-24 bg-zinc-900/50">
-        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
-            <div class="flex-1">
-                <h2 class="pixel-font text-4xl mb-6">不只是战斗，更是<span class="text-orange-400">创造</span></h2>
-                <p class="text-gray-400 text-lg mb-8">
-                    内置功能强大的创意工坊。你可以设计属于自己的关卡、布置敌人类型，甚至改变果汁的流向。分享给全服玩家，看看谁的关卡最折磨（或最爽快）！
-                </p>
-                <ul class="space-y-4 text-gray-300">
-                    <li class="flex items-center gap-3">
-                        <span class="text-green-500">✔</span> 自定义地图编辑
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <span class="text-green-500">✔</span> 创作者收益入驻
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <span class="text-green-500">✔</span> 一键试玩他人关卡
-                    </li>
-                </ul>
-            </div>
-            <div class="flex-1 w-full">
-                <div class="bg-black/40 p-4 rounded-3xl border border-white/10">
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="aspect-square bg-gray-800 rounded-xl flex items-center justify-center text-xs text-gray-500 italic">玩家关卡 A</div>
-                        <div class="aspect-square bg-gray-800 rounded-xl flex items-center justify-center text-xs text-gray-500 italic">玩家关卡 B</div>
-                        <div class="aspect-square bg-gray-800 rounded-xl flex items-center justify-center text-xs text-gray-500 italic">玩家关卡 C</div>
-                        <div class="aspect-square bg-gray-800 rounded-xl flex items-center justify-center text-xs text-gray-500 italic">玩家关卡 D</div>
-                    </div>
-                </div>
-            </div>
+        <div class="map-author">by @沙漠风暴</div>
+      </div>
+      <div class="map-card">
+        <div class="map-card-label">玩家关卡 D</div>
+        <div class="map-preview">
+          <div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-w"></div><div class="mp mp-w"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-g"></div>
+          <div class="mp mp-g"></div><div class="mp mp-r"></div><div class="mp mp-g"></div><div class="mp mp-w"></div><div class="mp mp-w"></div><div class="mp mp-g"></div><div class="mp mp-r"></div><div class="mp mp-g"></div>
+          <div class="mp mp-o"></div><div class="mp mp-g"></div><div class="mp mp-0"></div><div class="mp mp-0"></div><div class="mp mp-0"></div><div class="mp mp-0"></div><div class="mp mp-g"></div><div class="mp mp-o"></div>
+          <div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-0"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-0"></div><div class="mp mp-g"></div><div class="mp mp-g"></div>
+          <div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-0"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-0"></div><div class="mp mp-g"></div><div class="mp mp-g"></div>
+          <div class="mp mp-o"></div><div class="mp mp-g"></div><div class="mp mp-0"></div><div class="mp mp-0"></div><div class="mp mp-0"></div><div class="mp mp-0"></div><div class="mp mp-g"></div><div class="mp mp-o"></div>
+          <div class="mp mp-g"></div><div class="mp mp-r"></div><div class="mp mp-g"></div><div class="mp mp-w"></div><div class="mp mp-w"></div><div class="mp mp-g"></div><div class="mp mp-r"></div><div class="mp mp-g"></div>
+          <div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-w"></div><div class="mp mp-w"></div><div class="mp mp-g"></div><div class="mp mp-g"></div><div class="mp mp-g"></div>
         </div>
-    </section>
+        <div class="map-author">by @像素猎人</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- 下载区 -->
-    <section id="download" class="py-32 px-6 text-center">
-        <div class="max-w-3xl mx-auto bg-orange-500 rounded-[3rem] p-12 md:p-20 relative overflow-hidden">
-            <!-- 装饰背景 -->
-            <div class="absolute top-0 right-0 p-4 opacity-10 text-9xl">🧃</div>
-            
-            <h2 class="pixel-font text-4xl md:text-5xl mb-8 text-black">准备好喝一杯了吗？</h2>
-            <p class="text-orange-950 font-medium mb-12 text-lg">
-                支持全平台同步进度，随时随地开启果汁盛宴。
-            </p>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <button class="bg-black text-white px-8 py-4 rounded-2xl flex items-center justify-center gap-3 hover:scale-105 transition">
-                    <span>🍎</span> App Store 下载
-                </button>
-                <button class="bg-black text-white px-8 py-4 rounded-2xl flex items-center justify-center gap-3 hover:scale-105 transition">
-                    <span>🤖</span> Android 下载
-                </button>
-                <button class="bg-white text-black px-8 py-4 rounded-2xl flex items-center justify-center gap-3 hover:scale-105 transition sm:col-span-2">
-                    <span>💻</span> Windows PC 版 (v1.14)
-                </button>
-            </div>
-            
-            <p class="mt-8 text-orange-900 text-sm">
-                当前版本：v2.95.0 | 更新日期：2026-04-12
-            </p>
-        </div>
-    </section>
+<!-- DOWNLOAD -->
+<section id="download">
+  <div class="download-inner">
+    <div class="reveal">
+      <div class="section-tag">// get the game</div>
+      <h2 class="section-title">准备好喝一杯了吗？🧃</h2>
+      <p class="section-desc">支持全平台同步进度，随时随地开启果汁盛宴。</p>
+    </div>
+    <div class="download-btns reveal" style="transition-delay:.15s">
+      <a href="#" class="dl-btn">
+        <span class="dl-icon">🍎</span>
+        <span class="dl-info">
+          <span class="dl-sub">Download on the</span>
+          <span class="dl-name">App Store</span>
+        </span>
+      </a>
+      <a href="#" class="dl-btn">
+        <span class="dl-icon">🤖</span>
+        <span class="dl-info">
+          <span class="dl-sub">Get it on</span>
+          <span class="dl-name">Android</span>
+        </span>
+      </a>
+      <a href="#" class="dl-btn">
+        <span class="dl-icon">💻</span>
+        <span class="dl-info">
+          <span class="dl-sub">Windows PC</span>
+          <span class="dl-name">v1.14 下载</span>
+        </span>
+      </a>
+    </div>
+    <div class="version-info reveal" style="transition-delay:.3s">
+      当前版本：v2.95.0 &nbsp;|&nbsp; 更新日期：2026-04-12
+    </div>
+  </div>
+</section>
 
-    <!-- 页脚 -->
-    <footer class="py-12 border-t border-gray-800 text-center text-gray-500 text-sm">
-        <div class="flex justify-center gap-6 mb-6">
-            <a href="#" class="hover:text-white transition">隐私政策</a>
-            <a href="#" class="hover:text-white transition">所需权限</a>
-            <a href="#" class="hover:text-white transition">联系我们</a>
-        </div>
-        <p>© 2026 辉光游戏 (Powered by TapTap). All rights reserved.</p>
-        <p class="mt-2 text-xs">上海逸派玩科技有限公司 供应商提供</p>
-    </footer>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="#">隐私政策</a>
+    <a href="#">所需权限</a>
+    <a href="#">联系我们</a>
+  </div>
+  <div>© 2026 辉光游戏 (Powered by TapTap). All rights reserved.</div>
+  <div style="margin-top:6px;font-size:12px">上海逸派玩科技有限公司</div>
+</footer>
 
-    <script>
-        // 平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
