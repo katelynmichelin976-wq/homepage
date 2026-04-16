@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>有你好果汁吃 - 官方落地页</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap');
+        
+        :root {
+            --primary-orange: #FF8C42;
+            --primary-green: #63D471;
+            --bg-dark: #1A1A1A;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .pixel-font {
+            font-family: 'ZCOOL KuaiLe', cursive, sans-serif;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(180deg, rgba(255,140,66,0.2) 0%, rgba(26,26,26,1) 100%);
+        }
+
+        .card-glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card-glass:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-orange);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-orange);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 0 #D35400;
+        }
+
+        .btn-primary:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #D35400;
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .fruit-icon {
+            font-size: 2rem;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 导航栏 -->
+    <nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center bg-black/50 backdrop-blur-md">
+        <div class="flex items-center gap-2">
+            <span class="text-2xl">🧃</span>
+            <span class="pixel-font text-xl font-bold tracking-wider">有你好果汁吃</span>
+        </div>
+        <div class="hidden md:flex gap-8 text-sm font-medium">
+            <a href="#features" class="hover:text-orange-400 transition">游戏特色</a>
+            <a href="#workshop" class="hover:text-orange-400 transition">创意工坊</a>
+            <a href="#download" class="hover:text-orange-400 transition">立即下载</a>
+        </div>
+        <button class="bg-white text-black px-4 py-1.5 rounded-full text-sm font-bold hover:bg-orange-400 hover:text-white transition">
+            TapTap 关注
+        </button>
+    </nav>
+
+    <!-- 主视觉区 -->
+    <section class="relative min-h-screen flex flex-col justify-center items-center text-center px-4 hero-gradient overflow-hidden">
+        <div class="absolute top-20 left-10 floating opacity-20 text-6xl">🍎</div>
+        <div class="absolute bottom-20 right-10 floating opacity-20 text-6xl" style="animation-delay: 1s;">🍉</div>
+        <div class="absolute top-40 right-20 floating opacity-20 text-5xl" style="animation-delay: 1.5s;">🍇</div>
+
+        <div class="z-10 max-w-4xl">
+            <h1 class="pixel-font text-5xl md:text-8xl mb-6 leading-tight">
+                操控 <span class="text-orange-400">嗒啦啦</span><br>
+                把烦恼都化成 <span class="text-green-400">果汁</span>！
+            </h1>
+            <p class="text-gray-400 text-lg md:text-xl mb-10 max-w-2xl mx-auto">
+                一款爽快感爆棚的 2D 像素肉鸽游戏。拿起武器，冲进水果堆，开启一场充满果香的割草战斗！
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#download" class="btn-primary px-10 py-4 rounded-xl font-bold text-lg">立即试玩</a>
+                <button class="bg-gray-800 border border-gray-700 px-10 py-4 rounded-xl font-bold text-lg hover:bg-gray-700 transition">
+                    观看预告片
+                </button>
+            </div>
+        </div>
+
+        <!-- 装饰性占位图 -->
+        <div class="mt-16 w-full max-w-5xl px-4">
+            <div class="rounded-2xl border-4 border-gray-800 shadow-2xl overflow-hidden aspect-video bg-gray-900 flex items-center justify-center relative">
+                <div class="text-gray-600 text-center">
+                    <p class="text-6xl mb-4">🎮</p>
+                    <p>游戏画面预览图</p>
+                </div>
+                <!-- 模拟像素 UI 元素 -->
+                <div class="absolute top-4 left-4 flex gap-2">
+                    <div class="w-32 h-4 bg-red-600 rounded"></div>
+                    <div class="w-24 h-4 bg-blue-600 rounded"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特色介绍 -->
+    <section id="features" class="py-24 px-6 max-w-6xl mx-auto">
+        <h2 class="pixel-font text-3xl md:text-4xl text-center mb-16 underline decoration-orange-500 underline-offset-8">为什么好玩？</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="card-glass p-8 rounded-2xl">
+                <div class="fruit-icon mb-6">⚔️</div>
+                <h3 class="text-xl font-bold mb-4">极爽割草体验</h3>
+                <p class="text-gray-400 leading-relaxed">
+                    简单直接的动作操作，面对潮水般涌来的“水果大军”，体验一刀切下一大片的极致解压感。
+                </p>
+            </div>
+            <div class="card-glass p-8 rounded-2xl">
+                <div class="fruit-icon mb-6">🎲</div>
+                <h3 class="text-xl font-bold mb-4">随机肉鸽组合</h3>
+                <p class="text-gray-400 leading-relaxed">
+                    多种技能与道具随机掉落。每局比赛都能叠加出不同的战斗风格，你是想当快剑手还是轰炸大师？
+                </p>
+            </div>
+            <div class="card-glass p-8 rounded-2xl">
+                <div class="fruit-icon mb-6">🎨</div>
+                <h3 class="text-xl font-bold mb-4">像素艺术魅力</h3>
+                <p class="text-gray-400 leading-relaxed">
+                    精美的 2D 像素风设计，将 TapTap 经典角色嗒啦啦完美重现，色彩明亮，动效丝滑。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 创意工坊 -->
+    <section id="workshop" class="py-24 bg-zinc-900/50">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
+            <div class="flex-1">
+                <h2 class="pixel-font text-4xl mb-6">不只是战斗，更是<span class="text-orange-400">创造</span></h2>
+                <p class="text-gray-400 text-lg mb-8">
+                    内置功能强大的创意工坊。你可以设计属于自己的关卡、布置敌人类型，甚至改变果汁的流向。分享给全服玩家，看看谁的关卡最折磨（或最爽快）！
+                </p>
+                <ul class="space-y-4 text-gray-300">
+                    <li class="flex items-center gap-3">
+                        <span class="text-green-500">✔</span> 自定义地图编辑
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="text-green-500">✔</span> 创作者收益入驻
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="text-green-500">✔</span> 一键试玩他人关卡
+                    </li>
+                </ul>
+            </div>
+            <div class="flex-1 w-full">
+                <div class="bg-black/40 p-4 rounded-3xl border border-white/10">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="aspect-square bg-gray-800 rounded-xl flex items-center justify-center text-xs text-gray-500 italic">玩家关卡 A</div>
+                        <div class="aspect-square bg-gray-800 rounded-xl flex items-center justify-center text-xs text-gray-500 italic">玩家关卡 B</div>
+                        <div class="aspect-square bg-gray-800 rounded-xl flex items-center justify-center text-xs text-gray-500 italic">玩家关卡 C</div>
+                        <div class="aspect-square bg-gray-800 rounded-xl flex items-center justify-center text-xs text-gray-500 italic">玩家关卡 D</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 下载区 -->
+    <section id="download" class="py-32 px-6 text-center">
+        <div class="max-w-3xl mx-auto bg-orange-500 rounded-[3rem] p-12 md:p-20 relative overflow-hidden">
+            <!-- 装饰背景 -->
+            <div class="absolute top-0 right-0 p-4 opacity-10 text-9xl">🧃</div>
+            
+            <h2 class="pixel-font text-4xl md:text-5xl mb-8 text-black">准备好喝一杯了吗？</h2>
+            <p class="text-orange-950 font-medium mb-12 text-lg">
+                支持全平台同步进度，随时随地开启果汁盛宴。
+            </p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <button class="bg-black text-white px-8 py-4 rounded-2xl flex items-center justify-center gap-3 hover:scale-105 transition">
+                    <span>🍎</span> App Store 下载
+                </button>
+                <button class="bg-black text-white px-8 py-4 rounded-2xl flex items-center justify-center gap-3 hover:scale-105 transition">
+                    <span>🤖</span> Android 下载
+                </button>
+                <button class="bg-white text-black px-8 py-4 rounded-2xl flex items-center justify-center gap-3 hover:scale-105 transition sm:col-span-2">
+                    <span>💻</span> Windows PC 版 (v1.14)
+                </button>
+            </div>
+            
+            <p class="mt-8 text-orange-900 text-sm">
+                当前版本：v2.95.0 | 更新日期：2026-04-12
+            </p>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="py-12 border-t border-gray-800 text-center text-gray-500 text-sm">
+        <div class="flex justify-center gap-6 mb-6">
+            <a href="#" class="hover:text-white transition">隐私政策</a>
+            <a href="#" class="hover:text-white transition">所需权限</a>
+            <a href="#" class="hover:text-white transition">联系我们</a>
+        </div>
+        <p>© 2026 辉光游戏 (Powered by TapTap). All rights reserved.</p>
+        <p class="mt-2 text-xs">上海逸派玩科技有限公司 供应商提供</p>
+    </footer>
+
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
